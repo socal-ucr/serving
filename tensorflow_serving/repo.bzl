@@ -24,16 +24,15 @@ def _tensorflow_http_archive(ctx):
         sha256 = ""
         git_commit = override_git_commit
 
-    strip_prefix = "tensorflow-%s" % git_commit
+    strip_prefix = "socal-ucr-tensorflow-upstream-d965bff"
     urls = [
-        "https://mirror.bazel.build/github.com/tensorflow/tensorflow/archive/%s.tar.gz" % git_commit,
-        "https://github.com/tensorflow/tensorflow/archive/%s.tar.gz" % git_commit,
+            "https://github.com/socal-ucr/tensorflow-upstream/tarball/r2.4-rocm-enhanved-serving"
     ]
     ctx.download_and_extract(
         urls,
         "",
         sha256,
-        "",
+        "tar.gz",
         strip_prefix,
     )
     if patch:

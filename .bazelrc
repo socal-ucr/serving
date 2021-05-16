@@ -8,6 +8,22 @@ build:cuda --define=using_cuda=true --define=using_cuda_nvcc=true
 
 build:cuda --action_env=TF_CUDA_COMPUTE_CAPABILITIES="sm_35,sm_50,sm_60,sm_70,sm_75,compute_80"
 
+#Optoins used to build with ROCM
+build:rocm --crosstool_top=@local_config_rocm//crosstool:toolchain
+build:rocm --define=using_rocm=true --define=using_rocm_hipcc=true
+build:rocm --define=using_cuda=false --define=using_cuda_nvcc=false
+build:rocm --action_env TF_NEED_ROCM="1"
+build --define=tensorflow_enable_mlir_generated_gpu_kernels=0
+build --action_env TF_CONFIGURE_IOS="0"
+
+build --action_env PYTHON_BIN_PATH="/home/mchow009/.env3/bin/python3"
+build --action_env PYTHON_LIB_PATH="/home/mchow009/.env3/lib/python3.6/site-packages"
+build --python_path="/home/mchow009/.env3/bin/python3"
+build --action_env LD_LIBRARY_PATH="/home/mchow009/.opt/rocm/comgr/lib:/home/mchow009/.opt/rocm/hip/lib:/home/mchow009/.opt/rocm/rocrand/lib:/home/mchow009/.opt/rocm/hiprand/lib:/home/mchow009/.opt/rocm/lib:/home/mchow009/.opt/rocm/rocdl/lib:/home/mchow009/.opt/rocm/comgr/lib:/home/mchow009/.opt/rocm/hip/lib:/home/mchow009/.opt/rocm/rocrand/lib:/home/mchow009/.opt/rocm/hiprand/lib:/home/mchow009/.opt/rocm/lib:/home/mchow009/.opt/rocm/rocdl/lib:"
+build --action_env ROCM_PATH="/home/mchow009/.opt/rocm"
+build --action_env ROCM_ROOT="/home/mchow009/.opt/rocm"
+
+
 # Please note that MKL on MacOS or windows is still not supported.
 # If you would like to use a local MKL instead of downloading, please set the
 # environment variable "TF_MKL_ROOT" every time before build.
