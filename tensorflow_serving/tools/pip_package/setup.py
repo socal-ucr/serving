@@ -49,7 +49,7 @@ _TF_REQ = ['tensorflow'+_TF_VERSION_SANITIZED]
 # GPU build (note: the only difference is we depend on tensorflow-gpu so
 # pip doesn't overwrite it with the CPU build)
 if 'tensorflow-serving-api-gpu' in project_name:
-  _TF_REQ = ['tensorflow-gpu'+_TF_VERSION_SANITIZED]
+  _TF_REQ = ['tensorflow'+_TF_VERSION_SANITIZED]
 
 
 REQUIRED_PACKAGES = [
